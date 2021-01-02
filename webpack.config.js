@@ -15,6 +15,15 @@ module.exports = {
     rules: [
       //   { test: /\.js$/, use: `console.log("test")` },
       { test: /\.css$/, use: ["style-loader", "css-loader"] },
+      {
+        test: /\.(png|jpg|gif|svg)$/,
+        loader: "url-loader",
+        options: {
+          publicPath: "/dist/",
+          name: "[name].[ext]?[hash]",
+          limit: 20000, //2kb
+        },
+      },
     ],
   },
 };

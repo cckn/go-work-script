@@ -1,7 +1,6 @@
 import "./app.css";
-import { sum } from "./math.js";
+import nyancat from "./nyancat.jpg";
 
-const result = sum(1, 3);
-
-document.querySelector("#app").innerHTML = result;
-console.log(result);
+document.addEventListener("DOMContentLoaded", () => {
+  document.body.innerHTML = `<img src=${nyancat}></img>`;
+});
