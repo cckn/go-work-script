@@ -1,3 +1,4 @@
+import "./app.css";
 import { sum } from "./math.js";
 
 const result = sum(1, 3);

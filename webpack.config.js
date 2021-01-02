@@ -11,7 +11,10 @@ module.exports = {
     filename: "[name].js",
   },
 
-  //   loader: {
-  //     rules: [{ test: /\*.js$/ }],
-  //   },
+  module: {
+    rules: [
+      //   { test: /\.js$/, use: `console.log("test")` },
+      { test: /\.css$/, use: ["style-loader", "css-loader"] },
+    ],
+  },
 };
