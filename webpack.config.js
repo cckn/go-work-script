@@ -2,6 +2,10 @@ const path = require("path");
 const webpack = require("webpack");
 const childProcess = require("child_process");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
+const env = process.env.NODE_ENV;
 
 const removeNewLine = (buffer) => {
   return buffer.toString().replace("\n", "");
@@ -21,7 +25,13 @@ module.exports = {
   module: {
     rules: [
       //   { test: /\.js$/, use: `console.log("test")` },
-      { test: /\.css$/, use: ["style-loader", "css-loader"] },
+      {
+        test: /\.css$/,
+        use: [
+          env === "production" ? MiniCssExtractPlugin.loader : "style-loader",
+          "css-loader",
+        ],
+      },
       {
         test: /\.(png|jpg|gif|svg)$/,
         loader: "url-loader",
@@ -56,8 +66,17 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./src/index.html",
       templateParameters: {
-        env: process.env.NODE_ENV === "development" ? "(개발용)" : "프로덕션",
+        env: env === "development" ? "(개발용)" : "프로덕션",
       },
+      minify:
+        env === "production"
+          ? { collapseWhitespace: true, removeComments: true }
+          : false,
     }),
+    new CleanWebpackPlugin(),
+
+    ...(env === "production"
+      ? [new MiniCssExtractPlugin({ filename: "[name].css" })]
+      : []),
   ],
 };
