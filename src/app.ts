@@ -12,17 +12,17 @@ function copyToClipboard(val: string) {
 
 let removeToast: any;
 
-function toast(string: string) {
+function toast(string: string, time: number) {
   const toast = document.getElementById("toast");
   if (toast) {
     toast.classList.contains("reveal")
       ? (clearTimeout(removeToast),
         (removeToast = setTimeout(function () {
           document.getElementById("toast")?.classList.remove("reveal");
-        }, 1000)))
+        }, time)))
       : (removeToast = setTimeout(function () {
           document.getElementById("toast")?.classList.remove("reveal");
-        }, 1000));
+        }, time));
     toast.classList.add("reveal"), (toast.innerText = string);
   }
 }
@@ -45,16 +45,22 @@ document.addEventListener("DOMContentLoaded", () => {
   $goWorkBotton?.addEventListener("click", function () {
     if ($goWorkScript) {
       copyToClipboard($goWorkScript.innerText);
-      toast(`💻 출근 메세지 복사 - 
-      ${$goWorkScript.innerText}`);
+      toast(
+        `💻 출근 메세지 복사 -
+      ${$goWorkScript.innerText}`,
+        1500
+      );
     }
   });
 
   $goHomeBotton?.addEventListener("click", function () {
     if ($goHomeScript) {
       copyToClipboard($goHomeScript.innerText);
-      toast(`🏠 퇴근 메세지 복사 - 
-      ${$goHomeScript.innerText}`);
+      toast(
+        `🏠 퇴근 메세지 복사 -
+      ${$goHomeScript.innerText}`,
+        1500
+      );
     }
   });
 
@@ -73,8 +79,8 @@ document.addEventListener("DOMContentLoaded", () => {
     ($goHomeScript as HTMLLabelElement).innerHTML = `${y}.${M}.${d}(${w}) ${h}:${m} 정상 퇴근했습니다.`;
   };
 
+  updata();
   setInterval(() => {
     updata();
   }, 1000);
-  updata();
 });
