@@ -1,4 +1,54 @@
 body {
-  background-color: green;
-  background-image: url("bg.png");
+  /* background-color: green; */
+  /* background-image: url("bg.png"); */
+}
+
+#toast {
+  position: fixed;
+  top: 60px;
+  left: 75%;
+  width: 290px;
+  padding: 15px 20px;
+  transform: translate(-50%, 10px);
+  border-radius: 15px;
+  overflow: hidden;
+  font-size: 0.8rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s, visibility 0.5s, transform 0.5s;
+  z-index: 10000;
+}
+
+#toast.reveal {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
+
+div.box {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.go-work {
+  margin-top: 50px;
+}
+.container {
+  margin-top: 20px;
+  width: 767px;
+}
+@media (max-width: 767px) {
+  .section {
+    width: 100vw;
+  }
+}
+@media (max-width: 576px) {
+  .section {
+    width: 100vw;
+  }
+
+  div.box {
+    display: block;
+  }
 }

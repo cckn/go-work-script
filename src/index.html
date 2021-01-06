@@ -2,11 +2,50 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+      crossorigin="anonymous"
+    />
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"
+    />
+
     <title>Document <%= env %></title>
   </head>
   <body>
-    <div id="app"></div>
-    <!-- 주석입니다.  -->
+    <div id="toast" class="notification is-primary is-light"></div>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="title is-2">출퇴근 스크립트🎉</h2>
+
+        <h4 class="title is-4">현재 시각</h4>
+        <h4 class="subtitle time-now">현재 시각</h4>
+
+        <div class="box go-work">
+          <label class="label go-work-script"></label>
+          <button class="button is-primary go-work-botton">
+            💻 출근 메세지 복사
+          </button>
+        </div>
+
+        <div class="box go-home">
+          <label class="label go-home-script"></label>
+          <button class="button is-primary go-home-botton">
+            🏠 퇴근 메세지 복사
+          </button>
+        </div>
+      </div>
+    </section>
   </body>
 </html>

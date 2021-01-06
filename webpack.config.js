@@ -14,7 +14,7 @@ const removeNewLine = (buffer) => {
 module.exports = {
   mode: "development",
   entry: {
-    main: "./src/app.js",
+    main: "./src/app.ts",
   },
 
   output: {
@@ -41,6 +41,9 @@ module.exports = {
           limit: 20000, //2kb
         },
       },
+      { test: /\.ts$/, use: "awesome-typescript-loader" },
+      //   { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
+      //   { enforce: "pre", test: /\.ts$/, loader: "tslint-loader" },
     ],
   },
 
@@ -73,10 +76,14 @@ module.exports = {
           ? { collapseWhitespace: true, removeComments: true }
           : false,
     }),
-    new CleanWebpackPlugin(),
+    // new CleanWebpackPlugin(),
 
     ...(env === "production"
       ? [new MiniCssExtractPlugin({ filename: "[name].css" })]
       : []),
   ],
+
+  resolve: {
+    extensions: [".ts", ".js", ".json"],
+  },
 };
