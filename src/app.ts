@@ -32,14 +32,20 @@ document.addEventListener("DOMContentLoaded", () => {
   const $goWorkScript: HTMLLabelElement | null = document.querySelector(
     ".go-work-script"
   );
-  const $goHomeScript: HTMLLabelElement | null = document.querySelector(
-    ".go-home-script"
-  );
   const $goWorkBotton: HTMLButtonElement | null = document.querySelector(
     ".go-work-botton"
   );
+  const $goHomeScript: HTMLLabelElement | null = document.querySelector(
+    ".go-home-script"
+  );
   const $goHomeBotton: HTMLButtonElement | null = document.querySelector(
     ".go-home-botton"
+  );
+  const $goHomeScript24: HTMLLabelElement | null = document.querySelector(
+    ".go-home-script24"
+  );
+  const $goHomeBotton24: HTMLButtonElement | null = document.querySelector(
+    ".go-home-botton24"
   );
 
   $goWorkBotton?.addEventListener("click", function () {
@@ -57,7 +63,18 @@ document.addEventListener("DOMContentLoaded", () => {
     if ($goHomeScript) {
       copyToClipboard($goHomeScript.innerText);
       toast(
-        `🏠 퇴근 메세지 복사 -
+        `🏠 퇴근 메세지 복사(12h) -
+      ${$goHomeScript.innerText}`,
+        1500
+      );
+    }
+  });
+
+  $goHomeBotton24?.addEventListener("click", function () {
+    if ($goHomeScript) {
+      copyToClipboard($goHomeScript.innerText);
+      toast(
+        `🏠 퇴근 메세지 복사(24h) -
       ${$goHomeScript.innerText}`,
         1500
       );
@@ -75,11 +92,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const d = addZero(now.getDate());
     const w = DAYS[now.getDay()];
     const h = addZero((now.getHours() + 24) % 12 || 12);
+    const h24 = addZero((now.getHours() + 24) % 24 || 12);
     const m = addZero(now.getMinutes());
 
     ($now as HTMLHeadElement).innerHTML = `${now.toLocaleString()}`;
     ($goWorkScript as HTMLLabelElement).innerHTML = `${y}.${M}.${d}(${w}) ${h}:${m} 정상 출근했습니다.`;
     ($goHomeScript as HTMLLabelElement).innerHTML = `${y}.${M}.${d}(${w}) ${h}:${m} 정상 퇴근했습니다.`;
+    ($goHomeScript24 as HTMLLabelElement).innerHTML = `${y}.${M}.${d}(${w}) ${h24}:${m} 정상 퇴근했습니다.`;
   };
 
   updata();
