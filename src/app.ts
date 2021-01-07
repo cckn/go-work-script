@@ -10,7 +10,7 @@ function copyToClipboard(val: string) {
   document.body.removeChild(t);
 }
 
-let removeToast: any;
+let removeToast: NodeJS.Timeout;
 
 function toast(string: string, time: number) {
   const toast = document.getElementById("toast");
@@ -64,15 +64,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  const addZero = (src: number): string => {
+    return (src < 10 ? "0" + src : src).toString();
+  };
+
   const updata = () => {
     const now = new Date();
     const y = now.getFullYear();
-    const M = now.getMonth() + 1;
-    const d = now.getDate();
+    const M = addZero(now.getMonth() + 1);
+    const d = addZero(now.getDate());
     const w = DAYS[now.getDay()];
-    const _h = (now.getHours() + 24) % 12 || 12;
-    const h = _h < 10 ? "0" + _h : _h;
-    const m = now.getMinutes() < 10 ? "0" + now.getMinutes() : now.getMinutes();
+    const h = addZero((now.getHours() + 24) % 12 || 12);
+    const m = addZero(now.getMinutes());
 
     ($now as HTMLHeadElement).innerHTML = `${now.toLocaleString()}`;
     ($goWorkScript as HTMLLabelElement).innerHTML = `${y}.${M}.${d}(${w}) ${h}:${m} 정상 출근했습니다.`;
