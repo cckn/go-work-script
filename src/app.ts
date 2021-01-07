@@ -71,11 +71,11 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   $goHomeBotton24?.addEventListener("click", function () {
-    if ($goHomeScript) {
-      copyToClipboard($goHomeScript.innerText);
+    if ($goHomeScript24) {
+      copyToClipboard($goHomeScript24.innerText);
       toast(
         `🏠 퇴근 메세지 복사(24h) -
-      ${$goHomeScript.innerText}`,
+      ${$goHomeScript24.innerText}`,
         1500
       );
     }
